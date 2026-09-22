@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Evermint — your personal web desktop.">
+  <title>Evermint</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ==================== BOOT SCREEN ==================== -->
+
+  <div id="boot-screen" class="boot-screen">
+    <div class="boot-container">
+
+      <div class="evermint-logo boot-logo">
+        E
+      </div>
+
+      <h1>Evermint</h1>
+      <p>Starting up...</p>
+
+      <div class="boot-loader">
+        <div class="boot-loader-bar"></div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ==================== DESKTOP ==================== -->
+
+  <main id="desktop" class="desktop">
+
+    <div class="desktop-background"></div>
+
+
+    <!-- Desktop icons -->
+
+    <div class="desktop-icons">
+
+      <button class="desktop-icon" data-open="games">
+        <div class="desktop-icon-image games-icon">
+          🎮
+        </div>
+        <span>Games</span>
+      </button>
+
+      <button class="desktop-icon" data-open="browser">
+        <div class="desktop-icon-image browser-icon">
+          🌐
+        </div>
+        <span>Browser</span>
+      </button>
+
+      <button class="desktop-icon" data-open="settings">
+        <div class="desktop-icon-image settings-icon">
+          ⚙️
+        </div>
+        <span>Settings</span>
+      </button>
+
+    </div>
+
+
+    <!-- ==================== GAMES WINDOW ==================== -->
+
+    <section
+      class="window hidden"
+      id="window-games"
+      data-app="games"
+    >
+
+      <header class="window-titlebar">
+
+        <div class="window-title">
+          <span>🎮</span>
+          <strong>Games</strong>
+        </div>
+
+        <div class="window-controls">
+
+          <button data-minimize="games">
+            −
+          </button>
+
+          <button data-maximize="games">
+            □
+          </button>
+
+          <button
+            class="window-close"
+            data-close="games"
+          >
+            ×
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <div class="window-content games-layout">
+
+        <!-- Games sidebar -->
+
+        <aside class="games-sidebar">
+
+          <div class="sidebar-label">
+            LIBRARY
+          </div>
+
+          <button
+            class="sidebar-item active"
+            data-filter="all"
+          >
+            <span>⌂</span>
+            All Games
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-filter="featured"
+          >
+            <span>✦</span>
+            Featured
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-filter="recent"
+          >
+            <span>◷</span>
+            Recently Played
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-filter="favorites"
+          >
+            <span>♥</span>
+            Favorites
+          </button>
+
+
+          <div class="sidebar-label category-label">
+            CATEGORIES
+          </div>
+
+          <button
+            class="sidebar-item"
+            data-category="Platformer"
+          >
+            <span>▣</span>
+            Platformers
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-category="Horror"
+          >
+            <span>☾</span>
+            Horror
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-category="RPG"
+          >
+            <span>◇</span>
+            RPG
+          </button>
+
+          <button
+            class="sidebar-item"
+            data-category="Action"
+          >
+            <span>⚡</span>
+            Action
+          </button>
+
+        </aside>
+
+
+        <!-- Games main area -->
+
+        <div class="games-main">
+
+          <div class="games-header">
+
+            <div>
+
+              <div class="eyebrow">
+                EVERMINT LIBRARY
+              </div>
+
+              <h1>
+                Choose a game.
+              </h1>
+
+              <p id="game-count">
+                Loading library...
+              </p>
+
+            </div>
+
+
+            <label class="game-search">
+
+              <span>⌕</span>
+
+              <input
+                id="game-search-input"
+                type="search"
+                placeholder="Search games..."
+                autocomplete="off"
+              >
+
+            </label>
+
+          </div>
+
+
+          <div
+            id="game-grid"
+            class="game-grid"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================== BROWSER WINDOW ==================== -->
+
+    <section
+      class="window hidden"
+      id="window-browser"
+      data-app="browser"
+    >
+
+      <header class="window-titlebar">
+
+        <div class="window-title">
+          <span>🌐</span>
+          <strong>Browser</strong>
+        </div>
+
+        <div class="window-controls">
+
+          <button data-minimize="browser">
+            −
+          </button>
+
+          <button data-maximize="browser">
+            □
+          </button>
+
+          <button
+            class="window-close"
+            data-close="browser"
+          >
+            ×
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <div class="window-content browser-content">
+
+        <div class="browser-toolbar">
+
+          <button id="browser-back">
+            ←
+          </button>
+
+          <button id="browser-forward">
+            →
+          </button>
+
+          <button id="browser-reload">
+            ↻
+          </button>
+
+          <input
+            id="browser-address"
+            type="text"
+            placeholder="Enter a website address..."
+          >
+
+          <button
+            id="browser-go"
+            class="browser-go"
+          >
+            Go
+          </button>
+
+        </div>
+
+
+        <div
+          id="browser-view"
+          class="browser-view"
+        >
+
+          <div class="browser-home">
+
+            <div class="browser-home-logo">
+              🌿
+            </div>
+
+            <h2>
+              Evermint Browser
+            </h2>
+
+            <p>
+              Your browser window is ready.
+            </p>
+
+            <small>
+              Scramjet can be connected here.
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================== SETTINGS WINDOW ==================== -->
+
+    <section
+      class="window hidden"
+      id="window-settings"
+      data-app="settings"
+    >
+
+      <header class="window-titlebar">
+
+        <div class="window-title">
+          <span>⚙️</span>
+          <strong>Settings</strong>
+        </div>
+
+        <div class="window-controls">
+
+          <button data-minimize="settings">
+            −
+          </button>
+
+          <button data-maximize="settings">
+            □
+          </button>
+
+          <button
+            class="window-close"
+            data-close="settings"
+          >
+            ×
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <div class="window-content settings-content">
+
+        <div class="settings-heading">
+
+          <div class="settings-logo">
+            🌿
+          </div>
+
+          <div>
+
+            <div class="eyebrow">
+              EVERMINT OS
+            </div>
+
+            <h1>
+              Settings
+            </h1>
+
+          </div>
+
+        </div>
+
+
+        <div class="setting-row">
+
+          <div>
+            <strong>
+              Accent Color
+            </strong>
+
+            <span>
+              Change Evermint's green accent.
+            </span>
+          </div>
+
+          <input
+            id="accent-color"
+            type="color"
+            value="#20a464"
+          >
+
+        </div>
+
+
+        <div class="setting-row">
+
+          <div>
+            <strong>
+              Wallpaper
+            </strong>
+
+            <span>
+              Choose your desktop background.
+            </span>
+          </div>
+
+          <select id="wallpaper-select">
+
+            <option value="mint">
+              Mint
+            </option>
+
+            <option value="meadow">
+              Meadow
+            </option>
+
+            <option value="white">
+              Clean White
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="setting-row">
+
+          <div>
+            <strong>
+              Reduced Motion
+            </strong>
+
+            <span>
+              Reduce desktop animations.
+            </span>
+
+          </div>
+
+          <input
+            id="reduced-motion"
+            type="checkbox"
+          >
+
+        </div>
+
+
+        <button
+          id="reset-settings"
+          class="reset-settings"
+        >
+          Reset Evermint Settings
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================== START MENU ==================== -->
+
+    <div
+      id="start-menu"
+      class="start-menu hidden"
+    >
+
+      <div class="start-header">
+
+        <div class="start-logo">
+          E
+        </div>
+
+        <div>
+          <strong>
+            Evermint
+          </strong>
+
+          <span>
+            Home
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="start-search">
+
+        <span>⌕</span>
+
+        <input
+          id="start-search-input"
+          type="text"
+          placeholder="Search..."
+        >
+
+      </div>
+
+
+      <button data-open="games">
+
+        <span class="start-app-icon">
+          🎮
+        </span>
+
+        <div>
+          <strong>
+            Games
+          </strong>
+
+          <small>
+            Open your library
+          </small>
+        </div>
+
+      </button>
+
+
+      <button data-open="browser">
+
+        <span class="start-app-icon">
+          🌐
+        </span>
+
+        <div>
+          <strong>
+            Browser
+          </strong>
+
+          <small>
+            Browse the web
+          </small>
+        </div>
+
+      </button>
+
+
+      <button data-open="settings">
+
+        <span class="start-app-icon">
+          ⚙️
+        </span>
+
+        <div>
+          <strong>
+            Settings
+          </strong>
+
+          <small>
+            Customize Evermint
+          </small>
+        </div>
+
+      </button>
+
+    </div>
+
+
+    <!-- ==================== TOAST ==================== -->
+
+    <div
+      id="toast"
+      class="toast"
+    ></div>
+
+
+    <!-- ==================== TASKBAR ==================== -->
+
+    <footer class="taskbar">
+
+      <button
+        id="start-button"
+        class="start-button"
+      >
+        E
+      </button>
+
+
+      <div
+        id="taskbar-apps"
+        class="taskbar-apps"
+      ></div>
+
+
+      <div class="system-tray">
+
+        <span class="online-dot"></span>
+
+        <span class="online-text">
+          Online
+        </span>
+
+        <span id="clock">
+          --:--
+        </span>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
